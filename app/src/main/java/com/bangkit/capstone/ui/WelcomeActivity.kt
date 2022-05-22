@@ -6,6 +6,7 @@ import android.os.Bundle
 import com.bangkit.capstone.databinding.ActivityWelcomeBinding
 import com.bangkit.capstone.model.UserModel
 import com.bangkit.capstone.model.UserPreference
+import com.google.android.gms.common.SignInButton
 
 class WelcomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityWelcomeBinding
@@ -15,6 +16,8 @@ class WelcomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityWelcomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        this.supportActionBar?.hide()
+        binding.signInButton.setSize(SignInButton.SIZE_ICON_ONLY)
         setupAction()
     }
 

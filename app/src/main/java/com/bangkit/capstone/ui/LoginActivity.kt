@@ -4,6 +4,8 @@ import android.R
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.bangkit.capstone.databinding.ActivityLoginBinding
 import com.bangkit.capstone.model.UserModel
@@ -19,8 +21,8 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val signInButton = binding.signInButton
-        signInButton.setSize(SignInButton.SIZE_ICON_ONLY)
+        this.supportActionBar?.hide()
+        binding.signInButton.setSize(SignInButton.SIZE_ICON_ONLY)
         setupAction()
     }
 
