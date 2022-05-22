@@ -1,11 +1,15 @@
 package com.bangkit.capstone.ui
 
+import android.R
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.bangkit.capstone.databinding.ActivityLoginBinding
 import com.bangkit.capstone.model.UserModel
 import com.bangkit.capstone.model.UserPreference
+import com.google.android.gms.common.SignInButton
+
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -15,7 +19,8 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        val signInButton = binding.signInButton
+        signInButton.setSize(SignInButton.SIZE_ICON_ONLY)
         setupAction()
     }
 
