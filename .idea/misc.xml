@@ -3,10 +3,25 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/ariki/Documents/Arik Kuliah/Semester 6/Capstone Bangkit/capstone/app/src/main/res/layout/activity_login.xml" value="0.14666666666666667" />
-        <entry key="..\:/Users/ariki/Documents/Arik Kuliah/Semester 6/Capstone Bangkit/capstone/app/src/main/res/layout/activity_main.xml" value="0.16666666666666666" />
-        <entry key="..\:/Users/ariki/Documents/Arik Kuliah/Semester 6/Capstone Bangkit/capstone/app/src/main/res/layout/activity_register.xml" value="0.16666666666666666" />
-        <entry key="..\:/Users/ariki/Documents/Arik Kuliah/Semester 6/Capstone Bangkit/capstone/app/src/main/res/layout/activity_welcome.xml" value="0.16666666666666666" />
+        <entry key="..\:/001. Kuliah/Bangkit/Mobile Development/projects/Capstone/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.116" />
+        <entry key="..\:/001. Kuliah/Bangkit/Mobile Development/projects/Capstone/app/src/main/res/drawable/ic_baseline_alternate_email_24.xml" value="0.116" />
+        <entry key="..\:/001. Kuliah/Bangkit/Mobile Development/projects/Capstone/app/src/main/res/drawable/ic_baseline_date_range_24.xml" value="0.116" />
+        <entry key="..\:/001. Kuliah/Bangkit/Mobile Development/projects/Capstone/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.116" />
+        <entry key="..\:/001. Kuliah/Bangkit/Mobile Development/projects/Capstone/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.116" />
+        <entry key="..\:/001. Kuliah/Bangkit/Mobile Development/projects/Capstone/app/src/main/res/drawable/ic_launcher_background.xml" value="0.116" />
+        <entry key="..\:/001. Kuliah/Bangkit/Mobile Development/projects/Capstone/app/src/main/res/drawable/primary_btn.xml" value="0.116" />
+        <entry key="..\:/001. Kuliah/Bangkit/Mobile Development/projects/Capstone/app/src/main/res/drawable/register_btn.xml" value="0.116" />
+        <entry key="..\:/001. Kuliah/Bangkit/Mobile Development/projects/Capstone/app/src/main/res/drawable/secondary_btn.xml" value="0.116" />
+        <entry key="..\:/001. Kuliah/Bangkit/Mobile Development/projects/Capstone/app/src/main/res/drawable/square.xml" value="0.116" />
+        <entry key="..\:/001. Kuliah/Bangkit/Mobile Development/projects/Capstone/app/src/main/res/drawable/square2.xml" value="0.116" />
+        <entry key="..\:/001. Kuliah/Bangkit/Mobile Development/projects/Capstone/app/src/main/res/drawable/text_field.xml" value="0.116" />
+        <entry key="..\:/001. Kuliah/Bangkit/Mobile Development/projects/Capstone/app/src/main/res/layout-v28/activity_welcome.xml" value="0.18333333333333332" />
+        <entry key="..\:/001. Kuliah/Bangkit/Mobile Development/projects/Capstone/app/src/main/res/layout/activity_login.xml" value="0.18435754189944134" />
+        <entry key="..\:/001. Kuliah/Bangkit/Mobile Development/projects/Capstone/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/001. Kuliah/Bangkit/Mobile Development/projects/Capstone/app/src/main/res/layout/activity_register.xml" value="0.22" />
+        <entry key="..\:/001. Kuliah/Bangkit/Mobile Development/projects/Capstone/app/src/main/res/layout/activity_welcome.xml" value="0.22" />
+        <entry key="..\:/001. Kuliah/Bangkit/Mobile Development/projects/Capstone/app/src/main/res/layout/view_number_dialog.xml" value="0.184375" />
+        <entry key="..\:/001. Kuliah/Bangkit/Mobile Development/projects/Capstone/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.116" />
       </map>
     </option>
   </component>
