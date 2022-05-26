@@ -21,7 +21,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        this.supportActionBar?.hide()
+        supportActionBar?.hide()
         binding.signInButton.setSize(SignInButton.SIZE_ICON_ONLY)
         setupAction()
     }

@@ -63,6 +63,21 @@
             app:layout_constraintTop_toBottomOf="@+id/textView4">
 
             <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/fullnameField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/text_field"
+                android:drawableStart="@drawable/ic_baseline_person_24"
+                android:drawablePadding="10dp"
+                android:hint="Full Name"
+                android:paddingVertical="10dp"
+                android:paddingStart="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/emailField" />
+
+            <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/emailField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -70,26 +85,13 @@
                 android:drawableStart="@drawable/ic_baseline_alternate_email_24"
                 android:drawablePadding="10dp"
                 android:hint="Email"
+                android:inputType="textEmailAddress"
                 android:paddingVertical="10dp"
                 android:paddingStart="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/usernameField"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/text_field"
-                android:drawableStart="@drawable/ic_baseline_person_24"
-                android:drawablePadding="10dp"
-                android:hint="Username"
-                android:paddingVertical="10dp"
-                android:paddingStart="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/emailField" />
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/passwordField"
@@ -100,11 +102,138 @@
                 android:drawableStart="@drawable/ic_baseline_lock_24"
                 android:drawablePadding="10dp"
                 android:hint="Password"
+                android:inputType="textPassword"
                 android:paddingVertical="10dp"
                 android:paddingStart="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/usernameField" />
+                app:layout_constraintTop_toBottomOf="@id/fullnameField" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/genderFieldGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/passwordField">
+
+                <TextView
+                    android:id="@+id/gender_tv"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center_vertical"
+                    android:text="Gender:"
+                    app:layout_constraintTop_toTopOf="@id/genderField" />
+
+                <RadioGroup
+                    android:id="@+id/genderField"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="15dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="@+id/gender_tv"
+                    app:layout_constraintStart_toEndOf="@+id/gender_tv"
+                    app:layout_constraintTop_toTopOf="@+id/gender_tv">
+
+                    <RadioButton
+                        android:id="@+id/radio_male"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:buttonTint="@color/cornflower_blue"
+                        android:text="Male" />
+
+                    <RadioButton
+                        android:id="@+id/radio_female"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/cornflower_blue"
+                        android:text="Female" />
+                </RadioGroup>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/birth_date"
+                android:background="@drawable/text_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_baseline_date_range_24"
+                android:layout_marginTop="15dp"
+                android:drawablePadding="10dp"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:hint="Birth Date"
+                android:paddingVertical="10dp"
+                android:paddingStart="10dp"
+                app:layout_constraintTop_toBottomOf="@id/genderFieldGroup"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/height_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                app:layout_constraintTop_toBottomOf="@id/birth_date">
+
+                <TextView
+                    android:id="@+id/height_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Height (Cm): "
+                    app:layout_constraintBottom_toBottomOf="@+id/height_field"
+                    app:layout_constraintEnd_toStartOf="@id/height_field"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/height_field" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/height_field"
+                    app:layout_constraintStart_toEndOf="@id/height_tv"
+                    android:hint="- -"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/text_field"/>
+
+                <TextView
+                    android:id="@+id/weight_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Weight (Kg): "
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginStart="15dp"
+                    app:layout_constraintStart_toEndOf="@id/height_field"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/weight_field"
+                    app:layout_constraintStart_toEndOf="@id/weight_tv"
+                    android:hint="- -"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/text_field"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/registerButton"
@@ -118,7 +247,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/passwordField"
+                app:layout_constraintTop_toBottomOf="@+id/height_group"
                 app:layout_constraintVertical_bias="0.1" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
