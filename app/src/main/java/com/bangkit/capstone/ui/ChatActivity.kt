@@ -20,6 +20,12 @@ class ChatActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityChatBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.btnSend.setOnClickListener {
+            val input = binding.textInput.text
+        }
+
+
         val listViewType = mutableListOf<Int>()
         listViewType.add(1)
         listViewType.add(2)
