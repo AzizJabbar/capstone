@@ -32,7 +32,7 @@ class LoginActivity : AppCompatActivity() {
             val dummyUser = UserModel("1", "dummyUser1", "a", null, "1998", 3, 4, "token1")
             mUserPreference = UserPreference(this)
             mUserPreference.setUser(dummyUser)
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, ChatActivity::class.java))
             finish()
         }
     }
