@@ -29,7 +29,7 @@ class LoginActivity : AppCompatActivity() {
     private fun setupAction(){
         binding.loginButton.setOnClickListener{
             // using dummy user for authentication
-            val dummyUser = UserModel("1", "dummyUser1", "token1")
+            val dummyUser = UserModel("1", "dummyUser1", "a", null, "1998", 3, 4, "token1")
             mUserPreference = UserPreference(this)
             mUserPreference.setUser(dummyUser)
             startActivity(Intent(this, MainActivity::class.java))

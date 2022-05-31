@@ -15,6 +15,10 @@ internal class UserPreference (context: Context) {
         private const val PREFS_NAME = "user_pref"
         private const val USER_ID = "user_id"
         private const val NAME = "name"
+        private const val GENDER = "gender"
+        private const val TL = "tanggal_lahir"
+        private const val TB = "tinggi_badan"
+        private const val BB = "berat_badan"
         private const val TOKEN = "token"
     }
 
@@ -46,6 +50,10 @@ internal class UserPreference (context: Context) {
         val editor = preferences.edit()
         editor.putString(USER_ID, user.userId)
         editor.putString(NAME, user.name)
+        editor.putString(TL, user.tanggal_lahir)
+        editor.putInt(GENDER, user.gender!!)
+        editor.putInt(TB, user.tinggi_badan!!)
+        editor.putInt(BB, user.berat_badan!!)
         editor.putString(TOKEN, user.token)
         editor.apply()
     }
@@ -54,6 +62,10 @@ internal class UserPreference (context: Context) {
         val user = UserModel()
         user.userId = preferences.getString(USER_ID, "")
         user.name = preferences.getString(NAME, "")
+        user.tanggal_lahir = preferences.getString(TL, "")
+        user.gender = preferences.getInt(GENDER, 3)
+        user.tinggi_badan = preferences.getInt(TB, 0)
+        user.berat_badan = preferences.getInt(BB, 0)
         user.token = preferences.getString(TOKEN, "")
         return user
     }
