@@ -4,14 +4,23 @@ import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Patterns
 import android.view.View
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.NumberPicker
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
+import androidx.core.widget.doAfterTextChanged
+import androidx.lifecycle.ViewModelProvider
 import com.bangkit.capstone.R
 import com.bangkit.capstone.databinding.ActivityRegisterBinding
+import com.bangkit.capstone.model.UserModel
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -52,6 +61,8 @@ class RegisterActivity : AppCompatActivity() {
         weightEditText.setOnClickListener {
             openWeightDialog()
         }
+
+        setupAction()
 
     }
 
@@ -100,8 +111,159 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun updateLabel() {
-        val myFormat = "dd / MM / yyyy"
+        val myFormat = "yyyy-MM-dd"
         val dateFormat = SimpleDateFormat(myFormat, Locale.UK)
         birthDateText.setText(dateFormat.format(myCalendar.time))
+    }
+
+    private fun setupAction(){
+        // handling view error
+        // untuk input text, handle saat text changed
+        // untuk non text, handle saat button sign up di klik
+        validateInputText()
+
+        if (binding.emailField.error == null && binding.fullnameField.error == null && binding.passwordField.error == null){
+            // binding button sign up
+            binding.registerButton.setOnClickListener {
+
+                if (binding.emailField.error == null && binding.fullnameField.error == null
+                    && binding.passwordField.error == null && !binding.emailField.text.isNullOrEmpty()
+                    && !binding.fullnameField.text.isNullOrEmpty() && !binding.passwordField.text.isNullOrEmpty()){
+                    // binding view to required api body data type
+                    val username = binding.emailField.text.toString().trim()
+                    val fullName = binding.fullnameField.text.toString().trim()
+                    val password = binding.passwordField.text.toString().trim()
+
+                    val checkHeight = binding.heightField.text.toString().trim()
+                    var height: Int?
+                    if (checkHeight.isNullOrEmpty()){
+                        binding.heightField.error = "Please fill this field!"
+                        height = null
+                    }
+                    else {
+                        binding.heightField.error = null
+                        height = binding.heightField.text.toString().trim().toInt()
+                    }
+
+                    val checkWeight = binding.weightField.text.toString().trim()
+                    var weight: Int?
+                    if (checkWeight.isNullOrEmpty()){
+                        binding.weightField.error = "Please fill this field!"
+                        weight = null
+                    }
+                    else {
+                        binding.weightField.error = null
+                        weight = binding.weightField.text.toString().trim().toInt()
+                    }
+
+
+                    val birthDate = binding.birthDate.text.toString().trim()
+                    if (birthDate.isNullOrEmpty()){
+                        binding.birthDate.error = "Please fill this field!"
+                    }
+                    else{
+                        binding.birthDate.error = null
+                    }
+
+                    var gender: String
+                    // handling radio button
+                    if (binding.genderField.checkedRadioButtonId == -1){
+                        // if radio button has not been checked
+                        binding.radioMale.error = "Please fill this field"
+                        gender = ""
+                    }
+                    else{
+                        binding.radioMale.error = null
+                        val radioButton = binding.genderField.checkedRadioButtonId
+                        gender = resources.getResourceEntryName(radioButton).trim()
+                        gender = if (gender == "radio_male") "male" else "female"
+                    }
+
+                    if (binding.heightField.error == null && binding.weightField.error == null
+                        && binding.radioMale.error == null && binding.birthDate.error == null){
+                        val user = UserModel(null, username, password, fullName, gender, birthDate, height, weight, "token1"  )
+                        Toast.makeText(this, "Field: $user ", Toast.LENGTH_LONG).show()
+
+                        // tembak api disini
+                        val registerViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
+                            RegisterViewModel::class.java
+                        )
+
+                        registerViewModel.createUser(user.username!!, user.password!!, user.fullName!!, user.gender!!, user.height!!, user.weight!!, user.date_of_birth!!)
+                        registerViewModel.isLoading.observe(this){
+                            showLoading(it)
+                            if (it == false){
+                                if (registerViewModel.response.value?.status.equals("error")){
+                                    Toast.makeText(this, "Email is already taken, please input another email!", Toast.LENGTH_SHORT)
+                                        .show()
+                                }
+                                else{
+                                    Toast.makeText(this, "Successfully Registered " + user.username + " to Server", Toast.LENGTH_SHORT)
+                                        .show()
+                                    startActivity(Intent(this, WelcomeActivity::class.java))
+                                    finish()
+                                }
+                            }
+                        }
+
+                    }
+                }
+
+            }
+        }
+
+    }
+
+    private fun validateInputText(){
+
+        binding.emailField.addTextChangedListener(object: TextWatcher{
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+                // Do nothing.
+            }
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                // Do nothing.
+            }
+            override fun afterTextChanged(s: Editable) {
+                // Validate Email
+                if (binding.emailField.text.isNullOrEmpty() || !Patterns.EMAIL_ADDRESS.matcher(binding.emailField.text).matches()){
+                    binding.emailField.error="Please input valid email address!"
+                }
+            }
+        })
+
+        binding.fullnameField.addTextChangedListener(object: TextWatcher{
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+                // Do nothing.
+            }
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                // Do nothing.
+            }
+            override fun afterTextChanged(s: Editable) {
+                // Validate Field
+                if (binding.fullnameField.text.isNullOrEmpty()){
+                    binding.fullnameField.error="Please fill this field!"
+                }
+            }
+        })
+
+        binding.passwordField.addTextChangedListener(object: TextWatcher{
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+                // Do nothing.
+            }
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                // Do nothing.
+            }
+            override fun afterTextChanged(s: Editable) {
+                // Validate Field
+                if (binding.passwordField.text.isNullOrEmpty() || s.toString().length<6){
+                    binding.passwordField.error="Password must contains at least 6 characters!"
+                }
+            }
+        })
+
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 }

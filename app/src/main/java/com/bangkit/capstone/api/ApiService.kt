@@ -2,9 +2,7 @@ package com.bangkit.capstone.api
 
 import com.bangkit.capstone.model.AuthApiResponse
 import retrofit2.Call
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface ApiService {
 
@@ -17,6 +15,7 @@ interface ApiService {
 
     // utk format date of birth : yyyy-mm-dd
     @FormUrlEncoded
+    @Headers("Content-type: application/json")
     @POST("users")
     fun registerUser(
         @Field("username") username: String,
@@ -28,6 +27,11 @@ interface ApiService {
         @Field("date_of_birth") date_of_birth: String,
     ): Call<AuthApiResponse>
 
-
+    @FormUrlEncoded
+    @POST("food/predict")
+    fun predictFood(
+        @Field("food_name") food_name: String,
+        @Field("when") whenInt: String
+    ): Call<AuthApiResponse>
 
 }

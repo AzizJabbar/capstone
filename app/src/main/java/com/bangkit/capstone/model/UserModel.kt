@@ -13,6 +13,9 @@ data class UserModel(
     @SerializedName("username")
     var username: String? = null,
 
+    @SerializedName("password")
+    var password: String? = null,
+
     @SerializedName("fullName")
     var fullName: String? = null,
 
