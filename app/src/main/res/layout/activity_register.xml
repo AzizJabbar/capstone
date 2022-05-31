@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/square"
         android:layout_width="0dp"
-        android:layout_height="300dp"
+        android:layout_height="400dp"
         android:background="@drawable/square"
         android:clickable="false"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,7 +30,7 @@
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sign Up"
+            android:text="Daftar"
             android:textColor="@color/white"
             android:textSize="36sp"
             android:textStyle="bold"
@@ -42,7 +42,7 @@
             android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sign Up to Discover Amazing Things Around You"
+            android:text="Isi data diri kamu dulu, ya"
             android:textColor="@color/white"
             android:layout_marginTop="8dp"
             android:textSize="16sp"
@@ -52,10 +52,10 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
-            android:layout_width="350dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/square2"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             android:paddingVertical="40dp"
             android:paddingHorizontal="20dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -70,7 +70,7 @@
                 android:background="@drawable/text_field"
                 android:drawableStart="@drawable/ic_baseline_person_24"
                 android:drawablePadding="10dp"
-                android:hint="Full Name"
+                android:hint="Nama Lengkap"
                 android:paddingVertical="10dp"
                 android:paddingStart="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -113,7 +113,8 @@
                 android:id="@+id/genderFieldGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="15dp"
+                android:paddingVertical="6dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/passwordField">
@@ -125,7 +126,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:gravity="center_vertical"
-                    android:text="Gender:"
+                    android:text="Jenis Kelamin:"
                     app:layout_constraintTop_toTopOf="@id/genderField" />
 
                 <RadioGroup
@@ -146,14 +147,14 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"
                         android:buttonTint="@color/cornflower_blue"
-                        android:text="Male" />
+                        android:text="Pria" />
 
                     <RadioButton
                         android:id="@+id/radio_female"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="@color/cornflower_blue"
-                        android:text="Female" />
+                        android:text="Wanita" />
                 </RadioGroup>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -169,7 +170,7 @@
                 android:cursorVisible="false"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
-                android:hint="Birth Date"
+                android:hint="Tanggal Lahir"
                 android:paddingVertical="10dp"
                 android:paddingStart="10dp"
                 app:layout_constraintTop_toBottomOf="@id/genderFieldGroup"/>
@@ -185,7 +186,7 @@
                     android:id="@+id/height_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Height (Cm): "
+                    android:text="Tinggi (Cm): "
                     app:layout_constraintBottom_toBottomOf="@+id/height_field"
                     app:layout_constraintEnd_toStartOf="@id/height_field"
                     app:layout_constraintStart_toStartOf="parent"
@@ -210,7 +211,7 @@
                     android:id="@+id/weight_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Weight (Kg): "
+                    android:text="Berat (Kg): "
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:layout_marginStart="15dp"
                     app:layout_constraintStart_toEndOf="@id/height_field"
@@ -241,36 +242,45 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/primary_btn"
-                android:text="Sign Up"
+                android:text="Daftar"
+                android:textStyle="bold"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/height_group"
-                app:layout_constraintVertical_bias="0.1" />
+                app:layout_constraintTop_toBottomOf="@+id/height_group" />
+            <TextView
+                android:id="@+id/login_link"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/cornflower_blue"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toBottomOf="@id/registerButton"
+                android:text="@string/login_link"/>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:text="Or Register With:"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+<!--        <TextView-->
+<!--            android:id="@+id/textView5"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:gravity="center"-->
+<!--            android:text="Or Register With:"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />-->
 
-        <com.google.android.gms.common.SignInButton
-            android:id="@+id/sign_in_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView5" />
+<!--        <com.google.android.gms.common.SignInButton-->
+<!--            android:id="@+id/sign_in_button"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/textView5" />-->
 
         <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
         <!--            android:id="@+id/constraintLayout2"-->
