@@ -1,5 +1,7 @@
 package com.bangkit.capstone.adapters
 
+import android.text.format.DateUtils
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +10,21 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bangkit.capstone.R
 import com.bangkit.capstone.model.ChatModel
 
-class ChatAdapter constructor(private val listViewType: List<Int>, private val listChat: List<ChatModel>): RecyclerView.Adapter<ChatAdapter.ViewHolder>(){
+class ChatAdapter : RecyclerView.Adapter<ChatAdapter.ViewHolder>(){
+
+    private val listChat = mutableListOf<ChatModel>()
+    private val listViewType = mutableListOf<Int>()
+
+    fun submit(list:List<ChatModel>){
+        listChat.clear()
+        listViewType.clear()
+        listChat.addAll(list)
+        listChat.forEach {
+            listViewType.add(it.type)
+        }
+        notifyDataSetChanged()
+    }
+
 
     open class ViewHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView)
 
@@ -49,12 +65,12 @@ class ChatAdapter constructor(private val listViewType: List<Int>, private val l
             when (it) {
                 1 -> {
                     val viewHolderChatItemSelf = holder as ViewHolderChatItemSelf
-                    viewHolderChatItemSelf.textViewDateTime.text = chat.sent
+                    viewHolderChatItemSelf.textViewDateTime.text = DateUtils.getRelativeTimeSpanString(chat.timestamp)
                     viewHolderChatItemSelf.textViewMessage.text = chat.text
                 }
                 else -> {
                     val viewHolderChatBot = holder as ViewHolderChatItemBot
-                    viewHolderChatBot.textViewDateTime.text = chat.sent
+                    viewHolderChatBot.textViewDateTime.text = DateUtils.getRelativeTimeSpanString(chat.timestamp)
                     viewHolderChatBot.textViewMessage.text = chat.text
                 }
             }

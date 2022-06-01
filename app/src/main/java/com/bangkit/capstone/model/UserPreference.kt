@@ -9,13 +9,23 @@ import androidx.annotation.RequiresApi
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
 
-internal class UserPreference (context: Context) {
+class UserPreference (context: Context) {
 
     companion object {
         private const val PREFS_NAME = "user_pref"
         private const val USER_ID = "user_id"
         private const val NAME = "name"
         private const val TOKEN = "token"
+
+        @Volatile
+        private var INSTANCE: UserPreference? = null
+        fun getInstance(context: Context): UserPreference {
+            return INSTANCE ?: synchronized(this) {
+                val instance = UserPreference(context)
+                INSTANCE = instance
+                instance
+            }
+        }
     }
 
 
@@ -63,5 +73,6 @@ internal class UserPreference (context: Context) {
         editor.clear()
         editor.apply()
     }
+
 
 }

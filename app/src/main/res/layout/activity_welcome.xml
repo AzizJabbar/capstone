@@ -11,7 +11,7 @@
     <androidx.constraintlayout.motion.widget.MotionLayout
         android:id="@+id/square"
         android:layout_width="0dp"
-        android:layout_height="400dp"
+        android:layout_height="250dp"
         android:background="@drawable/square"
         android:clickable="false"
         app:layoutDescription="@xml/activity_welcome_xml_square_scene"
