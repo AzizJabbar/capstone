@@ -29,7 +29,7 @@ class ChatActivity : AppCompatActivity() {
         binding = ActivityChatBinding.inflate(layoutInflater)
         setContentView(binding.root)
         viewModel = obtainViewModel(this@ChatActivity)
-        botSendMessage("Hi, How can I help you?")
+//        botSendMessage("Hi, How can I help you?")
         binding.btnSend.setOnClickListener {
             val input = binding.textInput.text.toString()
             val message = ChatModel(

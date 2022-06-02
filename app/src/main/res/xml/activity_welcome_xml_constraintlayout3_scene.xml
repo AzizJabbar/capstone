@@ -3,62 +3,62 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:motion="http://schemas.android.com/apk/res-auto">
 
-    <Transition
-        motion:constraintSetEnd="@+id/end"
-        motion:constraintSetStart="@id/start"
-        motion:duration="3500"
-        motion:autoTransition="animateToEnd"
-        motion:motionInterpolator="cubic(1,0,0.63,0)"
-        motion:staggered="1">
-    </Transition>
+<!--    <Transition-->
+<!--        motion:constraintSetEnd="@+id/end"-->
+<!--        motion:constraintSetStart="@id/start"-->
+<!--        motion:duration="3500"-->
+<!--        motion:autoTransition="animateToEnd"-->
+<!--        motion:motionInterpolator="cubic(1,0,0.63,0)"-->
+<!--        motion:staggered="1">-->
+<!--    </Transition>-->
 
-    <ConstraintSet android:id="@+id/start">
-        <Constraint
-            android:id="@+id/imageView"
-            motion:layout_constraintEnd_toEndOf="@+id/constraintLayout"
-            motion:layout_constraintTop_toTopOf="parent"
-            motion:layout_constraintStart_toStartOf="@+id/constraintLayout"
-            motion:layout_constraintBottom_toTopOf="@+id/textView6"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginBottom="10dp" />
-        <Constraint
-            android:id="@+id/textView6"
-            motion:layout_constraintEnd_toEndOf="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            motion:layout_constraintTop_toBottomOf="@+id/imageView"
-            motion:layout_constraintStart_toStartOf="@+id/imageView"
-            android:layout_marginTop="10dp" />
-        <Constraint
-            android:id="@+id/constraintLayout"
-            motion:layout_constraintEnd_toEndOf="parent"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            motion:layout_constraintBottom_toBottomOf="parent"
-            android:visibility="invisible"
-            motion:layout_constraintTop_toBottomOf="@+id/textView6"
-            motion:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="30dp" />
-    </ConstraintSet>
+<!--    <ConstraintSet android:id="@+id/start">-->
+<!--        <Constraint-->
+<!--            android:id="@+id/imageView"-->
+<!--            motion:layout_constraintEnd_toEndOf="@+id/constraintLayout"-->
+<!--            motion:layout_constraintTop_toTopOf="parent"-->
+<!--            motion:layout_constraintStart_toStartOf="@+id/constraintLayout"-->
+<!--            motion:layout_constraintBottom_toTopOf="@+id/textView6"-->
+<!--            android:layout_width="150dp"-->
+<!--            android:layout_height="150dp"-->
+<!--            android:layout_marginBottom="10dp" />-->
+<!--        <Constraint-->
+<!--            android:id="@+id/textView6"-->
+<!--            motion:layout_constraintEnd_toEndOf="@+id/imageView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            motion:layout_constraintTop_toBottomOf="@+id/imageView"-->
+<!--            motion:layout_constraintStart_toStartOf="@+id/imageView"-->
+<!--            android:layout_marginTop="10dp" />-->
+<!--        <Constraint-->
+<!--            android:id="@+id/constraintLayout"-->
+<!--            motion:layout_constraintEnd_toEndOf="parent"-->
+<!--            android:layout_width="350dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            motion:layout_constraintBottom_toBottomOf="parent"-->
+<!--            android:visibility="invisible"-->
+<!--            motion:layout_constraintTop_toBottomOf="@+id/textView6"-->
+<!--            motion:layout_constraintStart_toStartOf="parent"-->
+<!--            android:layout_marginTop="30dp" />-->
+<!--    </ConstraintSet>-->
 
-    <ConstraintSet android:id="@+id/end">
-        <Constraint
-            android:id="@+id/imageView"
-            motion:layout_constraintEnd_toEndOf="@+id/constraintLayout"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            motion:layout_constraintTop_toTopOf="parent"
-            motion:layout_constraintStart_toStartOf="@+id/constraintLayout" />
-        <Constraint
-            android:id="@+id/constraintLayout"
-            motion:layout_constraintEnd_toEndOf="parent"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            motion:layout_constraintBottom_toBottomOf="parent"
-            android:visibility="visible"
-            motion:layout_constraintTop_toBottomOf="@+id/textView6"
-            motion:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="30dp" />
-    </ConstraintSet>
+<!--    <ConstraintSet android:id="@+id/end">-->
+<!--        <Constraint-->
+<!--            android:id="@+id/imageView"-->
+<!--            motion:layout_constraintEnd_toEndOf="@+id/constraintLayout"-->
+<!--            android:layout_width="100dp"-->
+<!--            android:layout_height="100dp"-->
+<!--            motion:layout_constraintTop_toTopOf="parent"-->
+<!--            motion:layout_constraintStart_toStartOf="@+id/constraintLayout" />-->
+<!--        <Constraint-->
+<!--            android:id="@+id/constraintLayout"-->
+<!--            motion:layout_constraintEnd_toEndOf="parent"-->
+<!--            android:layout_width="350dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            motion:layout_constraintBottom_toBottomOf="parent"-->
+<!--            android:visibility="visible"-->
+<!--            motion:layout_constraintTop_toBottomOf="@+id/textView6"-->
+<!--            motion:layout_constraintStart_toStartOf="parent"-->
+<!--            android:layout_marginTop="30dp" />-->
+<!--    </ConstraintSet>-->
 </MotionScene>
