@@ -7,6 +7,19 @@
     android:background="@color/gray"
     tools:context=".ui.RegisterActivity">
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.88"
+        tools:visibility="visible" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/square"
         android:layout_width="0dp"
@@ -18,6 +31,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
@@ -42,9 +56,9 @@
             android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:text="Sign Up to Discover Amazing Things Around You"
             android:textColor="@color/white"
-            android:layout_marginTop="8dp"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -54,10 +68,10 @@
             android:id="@+id/constraintLayout"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/square2"
             android:layout_marginTop="50dp"
-            android:paddingVertical="40dp"
+            android:background="@drawable/square2"
             android:paddingHorizontal="20dp"
+            android:paddingVertical="40dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView4">
@@ -120,20 +134,20 @@
 
                 <TextView
                     android:id="@+id/gender_tv"
-                    app:layout_constraintStart_toStartOf="parent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:gravity="center_vertical"
                     android:text="Gender:"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@id/genderField" />
 
                 <RadioGroup
                     android:id="@+id/genderField"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
                     android:layout_marginStart="15dp"
+                    android:layout_marginTop="20dp"
                     android:gravity="center"
                     android:orientation="horizontal"
                     app:layout_constraintBottom_toBottomOf="@+id/gender_tv"
@@ -159,20 +173,20 @@
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/birth_date"
-                android:background="@drawable/text_field"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_baseline_date_range_24"
                 android:layout_marginTop="15dp"
-                android:drawablePadding="10dp"
+                android:background="@drawable/text_field"
                 android:clickable="false"
                 android:cursorVisible="false"
+                android:drawableStart="@drawable/ic_baseline_date_range_24"
+                android:drawablePadding="10dp"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
                 android:hint="Birth Date"
                 android:paddingVertical="10dp"
                 android:paddingStart="10dp"
-                app:layout_constraintTop_toBottomOf="@id/genderFieldGroup"/>
+                app:layout_constraintTop_toBottomOf="@id/genderFieldGroup" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/height_group"
@@ -193,46 +207,45 @@
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/height_field"
-                    app:layout_constraintStart_toEndOf="@id/height_tv"
-                    android:hint="- -"
-                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/text_field"
                     android:clickable="false"
                     android:cursorVisible="false"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
                     android:gravity="center"
+                    android:hint="- -"
                     android:padding="5dp"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/text_field"/>
+                    app:layout_constraintStart_toEndOf="@id/height_tv"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/weight_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
                     android:text="Weight (Kg): "
                     app:layout_constraintBottom_toBottomOf="parent"
-                    android:layout_marginStart="15dp"
                     app:layout_constraintStart_toEndOf="@id/height_field"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/weight_field"
-                    app:layout_constraintStart_toEndOf="@id/weight_tv"
-                    android:hint="- -"
-                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/text_field"
                     android:clickable="false"
                     android:cursorVisible="false"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
                     android:gravity="center"
+                    android:hint="- -"
                     android:padding="5dp"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/text_field"/>
+                    app:layout_constraintStart_toEndOf="@id/weight_tv"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
             <androidx.appcompat.widget.AppCompatButton

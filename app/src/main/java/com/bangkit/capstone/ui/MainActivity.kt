@@ -25,6 +25,9 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
         else{
+            // langsung intent ke chat activity aja
+            startActivity(Intent(this, ChatActivity::class.java))
+            finish()
             setupAction()
         }
     }
