@@ -8,6 +8,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.widget.EditText
@@ -182,18 +183,20 @@ class RegisterActivity : AppCompatActivity() {
                     if (binding.heightField.error == null && binding.weightField.error == null
                         && binding.radioMale.error == null && binding.birthDate.error == null){
                         val user = UserModel(null, username, password, fullName, gender, birthDate, height, weight, "token1"  )
-                        Toast.makeText(this, "Field: $user ", Toast.LENGTH_LONG).show()
+//                        Toast.makeText(this, "Field: $user ", Toast.LENGTH_LONG).show()
 
                         // tembak api disini
                         val registerViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
                             RegisterViewModel::class.java
                         )
 
-                        registerViewModel.createUser(user.username!!, user.password!!, user.fullName!!, user.gender!!, user.height!!, user.weight!!, user.date_of_birth!!)
+//                        registerViewModel.createUser(user.username!!, user.password!!, user.fullName!!, user.gender!!, user.height!!, user.weight!!, user.date_of_birth!!)
+                        registerViewModel.createUser(user)
                         registerViewModel.isLoading.observe(this){
                             showLoading(it)
                             if (it == false){
-                                if (registerViewModel.response.value?.status.equals("error")){
+//                                Log.d("TAG", registerViewModel.response.value?.status!!)
+                                if (registerViewModel.response.value?.status == null){
                                     Toast.makeText(this, "Email is already taken, please input another email!", Toast.LENGTH_SHORT)
                                         .show()
                                 }

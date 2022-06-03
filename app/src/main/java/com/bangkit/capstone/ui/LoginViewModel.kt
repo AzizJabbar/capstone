@@ -11,8 +11,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class RegisterViewModel: ViewModel() {
-
+class LoginViewModel: ViewModel() {
     private val _response = MutableLiveData<AuthApiResponse>()
     val response: LiveData<AuthApiResponse> = _response
 
@@ -20,37 +19,12 @@ class RegisterViewModel: ViewModel() {
     val isLoading: LiveData<Boolean> = _isLoading
 
     companion object {
-        private const val TAG = "RegisterViewModel"
+        private const val TAG = "LoginViewModel"
     }
 
-//    fun createUser(username: String, password: String, fullName: String, gender: String, height: Int, weight: Int, date_of_birth: String){
-//        _isLoading.value = true
-//        val client = ApiConfig.getApiService().registerUser(username, password, fullName, gender, height, weight, date_of_birth)
-//        client.enqueue(object : Callback<AuthApiResponse> {
-//            override fun onResponse(
-//                call: Call<AuthApiResponse>,
-//                response: Response<AuthApiResponse>
-//            ) {
-//
-//                if (response.isSuccessful) {
-//                    _response.value = response.body()
-//                } else {
-//                    Log.e(TAG, "onFailure: ${response.message()}")
-//                    _response.value = response.body()
-//                }
-//                _isLoading.value = false
-//            }
-//            override fun onFailure(call: Call<AuthApiResponse>, t: Throwable) {
-//                _isLoading.value = false
-//                Log.e(TAG, "onFailure: ${t.message}")
-//                _response.value?.message = t.message
-//            }
-//        })
-//    }
-
-    fun createUser(user: UserModel){
+    fun login(user: UserModel){
         _isLoading.value = true
-        val client = ApiConfig.getApiService().registerUser(user)
+        val client = ApiConfig.getApiService().loginUser(user)
         client.enqueue(object : Callback<AuthApiResponse> {
             override fun onResponse(
                 call: Call<AuthApiResponse>,
@@ -73,5 +47,4 @@ class RegisterViewModel: ViewModel() {
             }
         })
     }
-
 }

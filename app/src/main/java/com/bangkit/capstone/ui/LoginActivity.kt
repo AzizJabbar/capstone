@@ -9,7 +9,9 @@ import android.util.Patterns
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.bangkit.capstone.databinding.ActivityLoginBinding
 import com.bangkit.capstone.model.UserModel
 import com.bangkit.capstone.model.UserPreference
@@ -34,13 +36,38 @@ class LoginActivity : AppCompatActivity() {
         validateInputText()
 
         binding.loginButton.setOnClickListener{
-            // using dummy user for authentication
+            // validate empty input & error
             if (binding.emailField.error==null && binding.passwordField.error == null && !binding.emailField.text.isNullOrEmpty() && !binding.emailField.text.isNullOrEmpty()){
-                val dummyUser = UserModel("1", "dummyUser1", "a", null, null, "1998", 3, 4, "token1")
-                mUserPreference = UserPreference(this)
-                mUserPreference.setUser(dummyUser)
-                startActivity(Intent(this, ChatActivity::class.java))
-                finish()
+
+                // tembak api disini
+                val username = binding.emailField.text.toString().trim()
+                val password = binding.passwordField.text.toString().trim()
+
+                val loggedUser = UserModel(null, username, password)
+
+                val loginViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
+                    LoginViewModel::class.java
+                )
+
+                loginViewModel.login(loggedUser)
+
+                loginViewModel.isLoading.observe(this){
+                    showLoading(it)
+                    if (it == false){
+                        if (loginViewModel.response.value?.status == null){
+                            Toast.makeText(this, "Incorrect email/password!", Toast.LENGTH_SHORT)
+                                .show()
+                        }
+                        else{
+                            Toast.makeText(this, "$username logged in successfully to server", Toast.LENGTH_SHORT)
+                                .show()
+                            mUserPreference = UserPreference(this)
+                            mUserPreference.setUser(loginViewModel.response.value?.data!!)
+                            startActivity(Intent(this,ChatActivity::class.java))
+                            finish()
+                        }
+                    }
+                }
             }
         }
     }
@@ -77,6 +104,10 @@ class LoginActivity : AppCompatActivity() {
             }
         })
 
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
 }
