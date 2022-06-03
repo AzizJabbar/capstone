@@ -101,7 +101,7 @@ class ChatActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.app_bar_logout -> {
                 logout()
-                toLoginActivity()
+//                toLoginActivity()
                 true
             }
             else -> {
