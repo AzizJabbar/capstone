@@ -1,17 +1,21 @@
 package com.bangkit.capstone.adapters
 
+import android.content.Context
 import android.text.format.DateUtils
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.CheckBox
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bangkit.capstone.R
 import com.bangkit.capstone.model.ChatModel
+import com.bangkit.capstone.ui.ChatActivity
 
-class ChatAdapter : RecyclerView.Adapter<ChatAdapter.ViewHolder>(){
-
+class ChatAdapter(context: Context) : RecyclerView.Adapter<ChatAdapter.ViewHolder>(){
+    private var context = context
     private val listChat = mutableListOf<ChatModel>()
     private val listViewType = mutableListOf<Int>()
 
@@ -32,6 +36,8 @@ class ChatAdapter : RecyclerView.Adapter<ChatAdapter.ViewHolder>(){
 
         val textViewDateTime: TextView = itemView.findViewById(R.id.text_view_date_time_item_layout_chat_bot)
         val textViewMessage: TextView = itemView.findViewById(R.id.text_view_message_item_layout_chat_bot)
+        val form: LinearLayout = itemView.findViewById(R.id.form)
+        val submitBtn: Button = itemView.findViewById(R.id.submitBtn)
 
     }
 
@@ -60,6 +66,7 @@ class ChatAdapter : RecyclerView.Adapter<ChatAdapter.ViewHolder>(){
     override fun getItemViewType(position: Int): Int = listViewType[position]
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
         val chat = listChat[position]
         listViewType[position].let {
             when (it) {
@@ -68,10 +75,40 @@ class ChatAdapter : RecyclerView.Adapter<ChatAdapter.ViewHolder>(){
                     viewHolderChatItemSelf.textViewDateTime.text = DateUtils.getRelativeTimeSpanString(chat.timestamp)
                     viewHolderChatItemSelf.textViewMessage.text = chat.text
                 }
-                else -> {
+                2 -> {
                     val viewHolderChatBot = holder as ViewHolderChatItemBot
                     viewHolderChatBot.textViewDateTime.text = DateUtils.getRelativeTimeSpanString(chat.timestamp)
                     viewHolderChatBot.textViewMessage.text = chat.text
+                }
+                3 -> {
+                    val viewHolderChatBot = holder as ViewHolderChatItemBot
+                    viewHolderChatBot.textViewDateTime.text = DateUtils.getRelativeTimeSpanString(chat.timestamp)
+                    viewHolderChatBot.textViewMessage.text = chat.text
+                    viewHolderChatBot.form.visibility = View.VISIBLE
+                    viewHolderChatBot.submitBtn.visibility = View.VISIBLE
+                    val sarapan = holder.itemView.findViewById<CheckBox>(R.id.sarapan)
+                    val makanSiang = holder.itemView.findViewById<CheckBox>(R.id.makanSiang)
+                    val makanMalam = holder.itemView.findViewById<CheckBox>(R.id.makanMalam)
+                    val snack = holder.itemView.findViewById<CheckBox>(R.id.snack)
+                    if(chat.isSubmitted){
+                        sarapan.isEnabled = false
+                        makanSiang.isEnabled = false
+                        makanMalam.isEnabled = false
+                        snack.isEnabled = false
+                        viewHolderChatBot.submitBtn.visibility = View.GONE
+                    }
+                    holder.itemView.findViewById<Button>(R.id.submitBtn).setOnClickListener {
+
+//                        viewHolderChatBot.form.visibility = View.GONE
+//                        viewHolderChatBot.submitBtn.visibility = View.GONE
+//                        sarapan.visibility = View.GONE
+//                        makanSiang.visibility = View.GONE
+//                        makanMalam.visibility = View.GONE
+//                        snack.visibility = View.GONE
+
+                        (context as ChatActivity).submitTime(sarapan.isChecked, makanSiang.isChecked, makanMalam.isChecked, snack.isChecked)
+
+                    }
                 }
             }
         }

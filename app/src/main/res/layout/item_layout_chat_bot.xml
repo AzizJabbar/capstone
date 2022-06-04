@@ -45,6 +45,49 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <LinearLayout
+                android:id="@+id/form"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:visibility="visible"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/text_view_message_item_layout_chat_bot"
+                android:orientation="vertical">
+
+                <CheckBox
+                    android:id="@+id/sarapan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sarapan" />
+
+                <CheckBox
+                    android:id="@+id/makanSiang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Makan Siang" />
+
+                <CheckBox
+                    android:id="@+id/makanMalam"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Makan Malam" />
+
+                <CheckBox
+                    android:id="@+id/snack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="snack" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/submitBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:visibility="visible"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/form"
+                android:text="Submit" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

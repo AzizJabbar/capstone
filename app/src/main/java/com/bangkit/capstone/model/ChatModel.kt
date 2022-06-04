@@ -1,5 +1,6 @@
 package com.bangkit.capstone.model
 
+import androidx.annotation.Nullable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -17,5 +18,8 @@ data class ChatModel(
     val timestamp: Long,
 
     @ColumnInfo(name = "type")
-    val type: Int
+    val type: Int,
+
+    @ColumnInfo(name = "isSubmitted")
+    var isSubmitted: Boolean
 )

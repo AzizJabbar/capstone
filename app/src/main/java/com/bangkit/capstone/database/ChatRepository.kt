@@ -19,4 +19,8 @@ class ChatRepository(application: Application) {
         executorService.execute { mChatsDao.insert(chat) }
     }
     fun deleteAllChats() = mChatsDao.deleteAllChats()
+    fun getNewestChat(): ChatModel = mChatsDao.getNewestChat()
+    fun getChatById(id: String) = mChatsDao.getChatById(id)
+    fun deleteChatById(id: String) = mChatsDao.deleteChatById(id)
+    fun submitted(id: String) = mChatsDao.submitted(id)
 }

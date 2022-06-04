@@ -19,6 +19,7 @@ abstract class ChatRoomDatabase : RoomDatabase() {
                 synchronized(ChatRoomDatabase::class.java) {
                     INSTANCE = Room.databaseBuilder(context.applicationContext,
                         ChatRoomDatabase::class.java, "chat_database")
+                        .allowMainThreadQueries()
                         .build()
                 }
             }

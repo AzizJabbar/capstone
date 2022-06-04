@@ -17,4 +17,16 @@ interface ChatDao {
 
     @Query("DELETE from ChatModel")
     fun deleteAllChats()
+
+    @Query("SELECT * FROM ChatModel ORDER BY ID DESC LIMIT 1")
+    fun getNewestChat(): ChatModel
+
+    @Query("SELECT * FROM ChatModel WHERE id=:id ")
+    fun getChatById(id: String): ChatModel
+
+    @Query("DELETE FROM ChatModel WHERE id=:id")
+    fun deleteChatById(id: String)
+
+    @Query("UPDATE ChatModel SET isSubmitted=1 WHERE id = :id")
+    fun submitted(id: String)
 }

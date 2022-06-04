@@ -13,9 +13,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.appcompat.app.AppCompatDelegate
-import com.bangkit.capstone.databinding.ActivityLoginBinding
 import com.bangkit.capstone.model.UserModel
 import com.bangkit.capstone.model.UserPreference
+import com.bangkit.capstone.databinding.ActivityLoginBinding
 import com.google.android.gms.common.SignInButton
 
 
