@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Capstone</string>
+    <string name="login_link"><u>Saya sudah punya akun</u></string>
+    <string name="register_link">Saya belum punya akun</string>
 </resources>

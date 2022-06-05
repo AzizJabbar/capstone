@@ -13,7 +13,7 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.Capstone">
         <activity
-            android:name=".ui.ChatActivity"
+            android:name=".ui.MainActivity"
             android:exported="false" />
         <activity
             android:name=".ui.RegisterActivity"
@@ -25,7 +25,7 @@
             android:name=".ui.WelcomeActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.ChatActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -16,6 +16,7 @@ import android.widget.LinearLayout
 import android.widget.NumberPicker
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.widget.addTextChangedListener
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.ViewModelProvider
@@ -35,6 +36,7 @@ class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(binding.root)
         supportActionBar?.hide()
         val date =
@@ -203,7 +205,7 @@ class RegisterActivity : AppCompatActivity() {
                                 else{
                                     Toast.makeText(this, "Successfully Registered " + user.username + " to Server", Toast.LENGTH_SHORT)
                                         .show()
-                                    startActivity(Intent(this, WelcomeActivity::class.java))
+                                    startActivity(Intent(this, LoginActivity::class.java))
                                     finish()
                                 }
                             }

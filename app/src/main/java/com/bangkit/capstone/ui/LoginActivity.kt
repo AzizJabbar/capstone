@@ -12,9 +12,10 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.bangkit.capstone.databinding.ActivityLoginBinding
+import androidx.appcompat.app.AppCompatDelegate
 import com.bangkit.capstone.model.UserModel
 import com.bangkit.capstone.model.UserPreference
+import com.bangkit.capstone.databinding.ActivityLoginBinding
 import com.google.android.gms.common.SignInButton
 
 
@@ -25,9 +26,10 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(binding.root)
         supportActionBar?.hide()
-        binding.signInButton.setSize(SignInButton.SIZE_ICON_ONLY)
+//        binding.signInButton.setSize(SignInButton.SIZE_ICON_ONLY)
         setupAction()
     }
 

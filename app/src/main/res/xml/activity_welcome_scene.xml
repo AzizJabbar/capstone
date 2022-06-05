@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="2000"
+        motion:autoTransition="animateToEnd"
+        motion:motionInterpolator="cubic(1,0,0.6,0)"
+        motion:pathMotionArc="none">
+       <KeyFrameSet>
+       </KeyFrameSet>
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/square"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/square"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="250dp"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:transitionEasing="cubic(0,0,0.8,0.8)" />
+    </ConstraintSet>
+</MotionScene>

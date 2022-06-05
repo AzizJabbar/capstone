@@ -1,7 +1,6 @@
 package com.bangkit.capstone.api
 
-import com.bangkit.capstone.model.AuthApiResponse
-import com.bangkit.capstone.model.UserModel
+import com.bangkit.capstone.model.*
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -31,11 +30,16 @@ interface ApiService {
         @Body user: UserModel
     ): Call<AuthApiResponse>
 
-    @FormUrlEncoded
     @POST("food/predict")
     fun predictFood(
-        @Field("food_name") food_name: String,
-        @Field("when") whenInt: String
-    ): Call<AuthApiResponse>
+        @Header("Authorization") token: String,
+        @Body foodInput: FoodInput
+    ): Call<FoodPredictResponse>
+
+    @POST("bot/chat/predict")
+    fun predictChat(
+        @Header("Authorization") token: String,
+        @Body chat_content: ChatInput
+    ): Call<ChatPredictResponse>
 
 }
