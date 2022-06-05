@@ -19,6 +19,9 @@ class ChatViewModel(application: Application, private val pref: UserPreference):
     private val _predictedLabel = MutableLiveData<String>()
     private val predictedLabel : LiveData<String> = _predictedLabel
 
+    private val _recommendation = MutableLiveData<FoodPredictResponse?>()
+    private val recommendation : LiveData<FoodPredictResponse?> = _recommendation
+
     fun insert(chat: ChatModel) = mChatRepository.insert(chat)
     fun getChats():LiveData<List<ChatModel>> = mChatRepository.getAllChats()
     fun deleteAllChats() = mChatRepository.deleteAllChats()
@@ -47,7 +50,30 @@ class ChatViewModel(application: Application, private val pref: UserPreference):
         })
     }
 
+    fun predictFood(foodName: String, time: String){
+        val client = ApiConfig.getApiService().predictFood("Bearer " + pref.getUser().token, FoodInput(foodName, time))
+        client.enqueue(object : Callback<FoodPredictResponse> {
+            override fun onResponse(
+                call: Call<FoodPredictResponse>,
+                response: Response<FoodPredictResponse>
+            ) {
+                if (response.isSuccessful) {
+                    _recommendation.value = response.body()
+                } else {
+                    Log.e(ContentValues.TAG, "onFailure: ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<FoodPredictResponse>, t: Throwable) {
+                Log.e(ContentValues.TAG, "onFailure: ${t.message}")
+            }
+        })
+    }
+
     fun getPredictedLabel() = predictedLabel
 
+    fun getRecommendation() = recommendation
+
     fun resetLabel() { _predictedLabel.value = "" }
+    fun resetRecommendation() { _recommendation.value = null }
 }

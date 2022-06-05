@@ -90,13 +90,13 @@ class ChatAdapter(context: Context) : RecyclerView.Adapter<ChatAdapter.ViewHolde
                     val makanSiang = holder.itemView.findViewById<CheckBox>(R.id.makanSiang)
                     val makanMalam = holder.itemView.findViewById<CheckBox>(R.id.makanMalam)
                     val snack = holder.itemView.findViewById<CheckBox>(R.id.snack)
-                    if(chat.isSubmitted){
-                        sarapan.isEnabled = false
-                        makanSiang.isEnabled = false
-                        makanMalam.isEnabled = false
-                        snack.isEnabled = false
-                        viewHolderChatBot.submitBtn.visibility = View.GONE
-                    }
+//                    if(chat. isSubmitted){
+//                        sarapan.isEnabled = false
+//                        makanSiang.isEnabled = false
+//                        makanMalam.isEnabled = false
+//                        snack.isEnabled = false
+//                        viewHolderChatBot.submitBtn.visibility = View.GONE
+//                    }
                     holder.itemView.findViewById<Button>(R.id.submitBtn).setOnClickListener {
 
 //                        viewHolderChatBot.form.visibility = View.GONE

@@ -137,10 +137,25 @@ class ChatActivity : AppCompatActivity() {
     }
 
     fun submitTime(sarapan: Boolean, makanSiang: Boolean, makanMalam: Boolean, snack: Boolean){
-//        viewModel.deleteChatById(formId.toString())
+        viewModel.deleteChatById(formId.toString())
 //        viewModel.getChatById(formId.toString()).isSubmitted = true
-        viewModel.submitted(formId.toString())
+//        viewModel.submitted(formId.toString())
         botSendMessage("$foodName, $sarapan, $makanSiang, $makanMalam, $snack")
+        val temp = mutableListOf<String>()
+        if(sarapan)temp.add("1")
+        if(makanSiang)temp.add("2")
+        if(makanMalam)temp.add("3")
+        if(snack)temp.add("4")
+        viewModel.predictFood(foodName, temp.joinToString())
+        viewModel.getRecommendation().observe(this){
+            if (it != null) {
+                botSendMessage(it.toString())
+                viewModel.resetRecommendation()
+            }
+        }
+        formId = 0
+        foodName = ""
+        isRecom = false
     }
 
     private fun botSendMessage(s: String) {
