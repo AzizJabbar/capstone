@@ -36,6 +36,8 @@ class ChatActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
+
+
         //initiate adapter
         adapterChat = ChatAdapter(this)
 
@@ -45,11 +47,16 @@ class ChatActivity : AppCompatActivity() {
         //initiate user pref
         mUserPreference = UserPreference(this)
 
-        //get user
-        val user = mUserPreference.getUser()
-
-        //greet user with their name
-        botSendMessage("Hi ${user.fullName?.split(" ")?.get(0)}, How can I help you?")
+        // checking user pref
+        if (mUserPreference.getUser().token.isNullOrEmpty()){
+            startActivity(Intent(this, WelcomeActivity::class.java))
+            finish()
+        } else{
+            //get user
+            val user = mUserPreference.getUser()
+            //greet user with their name
+            botSendMessage("Hi ${user.fullName?.split(" ")?.get(0)}, How can I help you?")
+        }
 
         //listen to send button
         binding.btnSend.setOnClickListener{ processInput() }
@@ -60,12 +67,6 @@ class ChatActivity : AppCompatActivity() {
         //scroll to bottom
         scrollToBottom()
 
-        // checking user pref
-        mUserPreference = UserPreference(this)
-        if (mUserPreference.getUser().token.isNullOrEmpty()){
-            startActivity(Intent(this, WelcomeActivity::class.java))
-            finish()
-        }
     }
 
     private fun scrollToBottom() {
@@ -106,7 +107,7 @@ class ChatActivity : AppCompatActivity() {
     private fun showForm() {
         val message = ChatModel(
             0,
-            "kapan?",
+            "Pilih waktu rekomendasi:",
             Date().time,
             3,
             false
@@ -149,8 +150,28 @@ class ChatActivity : AppCompatActivity() {
         viewModel.predictFood(foodName, temp.joinToString())
         viewModel.getRecommendation().observe(this){
             if (it != null) {
-                botSendMessage(it.toString())
+                val map = mapOf(
+                    "Sarapan" to it.data.breakfast?.recommended,
+                    "Makan Siang" to it.data.lunch?.recommended ,
+                    "Makan Malam" to it.data.dinner?.recommended,
+                    "Snack" to it.data.breakfast?.recommended
+                )
+                botSendMessage("Berikut adalah rekomendasi dari saya")
+                map.forEach { (key, value) ->
+                    if (value != null) {
+                        val rec = mutableListOf<String>()
+                        value.forEach { recommendItem ->
+                            rec.add("- ${recommendItem.namaMakanan}")
+                        }
+                        botSendMessage("<b>${key}</b>:<br>${rec.joinToString("<br>")}")
+
+                    }
+                }
+
+//                botSendMessage(it.toString())
                 viewModel.resetRecommendation()
+            } else {
+                botSendMessage("Maaf, nama makanan tersebut tidak ada di database kami")
             }
         }
         formId = 0
