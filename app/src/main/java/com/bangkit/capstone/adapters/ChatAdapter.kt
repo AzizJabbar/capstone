@@ -1,6 +1,7 @@
 package com.bangkit.capstone.adapters
 
 import android.content.Context
+import android.text.Html
 import android.text.format.DateUtils
 import android.view.LayoutInflater
 import android.view.View
@@ -72,17 +73,18 @@ class ChatAdapter(context: Context) : RecyclerView.Adapter<ChatAdapter.ViewHolde
             when (it) {
                 1 -> {
                     val viewHolderChatItemSelf = holder as ViewHolderChatItemSelf
-                    viewHolderChatItemSelf.textViewDateTime.text = DateUtils.getRelativeTimeSpanString(chat.timestamp)
+//                    viewHolderChatItemSelf.textViewDateTime.text = DateUtils.get
+//                    viewHolderChatItemSelf.textViewDateTime.text = DateUtils.getRelativeTimeSpanString(chat.timestamp)
                     viewHolderChatItemSelf.textViewMessage.text = chat.text
                 }
                 2 -> {
                     val viewHolderChatBot = holder as ViewHolderChatItemBot
-                    viewHolderChatBot.textViewDateTime.text = DateUtils.getRelativeTimeSpanString(chat.timestamp)
-                    viewHolderChatBot.textViewMessage.text = chat.text
+//                    viewHolderChatBot.textViewDateTime.text = DateUtils.getRelativeTimeSpanString(chat.timestamp)
+                    viewHolderChatBot.textViewMessage.text = Html.fromHtml(chat.text)
                 }
                 3 -> {
                     val viewHolderChatBot = holder as ViewHolderChatItemBot
-                    viewHolderChatBot.textViewDateTime.text = DateUtils.getRelativeTimeSpanString(chat.timestamp)
+//                    viewHolderChatBot.textViewDateTime.text = DateUtils.getRelativeTimeSpanString(chat.timestamp)
                     viewHolderChatBot.textViewMessage.text = chat.text
                     viewHolderChatBot.form.visibility = View.VISIBLE
                     viewHolderChatBot.submitBtn.visibility = View.VISIBLE

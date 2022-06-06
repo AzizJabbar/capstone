@@ -22,6 +22,9 @@ class ChatViewModel(application: Application, private val pref: UserPreference):
     private val _recommendation = MutableLiveData<FoodPredictResponse?>()
     private val recommendation : LiveData<FoodPredictResponse?> = _recommendation
 
+    private val _flag = MutableLiveData<String?>()
+    private val flag : LiveData<String?> = _flag
+
     fun insert(chat: ChatModel) = mChatRepository.insert(chat)
     fun getChats():LiveData<List<ChatModel>> = mChatRepository.getAllChats()
     fun deleteAllChats() = mChatRepository.deleteAllChats()
@@ -61,6 +64,7 @@ class ChatViewModel(application: Application, private val pref: UserPreference):
                     _recommendation.value = response.body()
                 } else {
                     Log.e(ContentValues.TAG, "onFailure: ${response.message()}")
+                    _recommendation.value = null
                 }
             }
 

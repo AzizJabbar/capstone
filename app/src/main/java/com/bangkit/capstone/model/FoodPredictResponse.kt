@@ -22,17 +22,29 @@ data class Snack(
 
 data class Data1(
 
-	@field:SerializedName("lunch")
-	val lunch: Lunch,
+	@field:SerializedName("breakfast")
+	val breakfast: Breakfast?,
 
-	@field:SerializedName("snack")
-	val snack: Snack,
+	@field:SerializedName("lunch")
+	val lunch: Lunch?,
 
 	@field:SerializedName("dinner")
-	val dinner: Dinner
+	val dinner: Dinner?,
+
+	@field:SerializedName("snack")
+	val snack: Snack?
 )
 
 data class Lunch(
+
+	@field:SerializedName("gizi_needed")
+	val giziNeeded: GiziNeeded,
+
+	@field:SerializedName("recommended")
+	val recommended: List<RecommendedItem>
+)
+
+data class Breakfast(
 
 	@field:SerializedName("gizi_needed")
 	val giziNeeded: GiziNeeded,
