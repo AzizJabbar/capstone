@@ -62,9 +62,46 @@ class ChatActivity : AppCompatActivity() {
             }
             //get user
             val user = mUserPreference.getUser()
-            //greet user with their name
-            botSendMessage("Hi ${user.fullName?.split(" ")?.get(0)}, How can I help you?")
-            botSendMessage("BMI mu adalah: ${(user.weight?.div(user.height!!.toDouble().pow(2.0)) ?:"" )}")
+
+            // greet user for the first time only
+            if (viewModel.getNewestChat() == null){
+                //greet user with their name
+                botSendMessage("Hi ${user.fullName?.split(" ")?.get(0)}, How can I help you?")
+                botSendMessage("Your BMI is: ${(user.weight?.div(user.height!!.toDouble().pow(2.0)/10000) ?:"" )} kg/m\u00B2")
+                val bmi = user.weight?.div(user.height!!.toDouble().pow(2.0)/10000)
+                var lowerBoundWeight = 18.6 * user.height!! * user.height!! / 10000
+                var higherBoundWeight = 25 * user.height!! * user.height!! / 10000
+                var kategori: String
+                kategori = "Not Found"
+                if (bmi != null) {
+                    when {
+                        bmi < 16 -> kategori = "Severe Thinness"
+                        bmi > 16 && bmi <= 17 -> kategori = "Moderate Thinness"
+                        bmi > 17 && bmi <= 18.5 -> kategori = "Mild Thinness"
+                        bmi > 18.5 && bmi <= 25 -> kategori = "Normal"
+                        bmi > 25 && bmi <= 30 -> kategori = "Overweight"
+                        bmi > 30 && bmi <= 35 -> kategori = "Obese Class I"
+                        bmi > 35 && bmi <= 40 -> kategori = "Obese Class II"
+                        bmi > 40 -> kategori = "Obese Class II"
+                    }
+                }
+
+                if (bmi != null) {
+                    when{
+                        bmi < 16 -> botSendMessage("Your Category is: $kategori <br> <br>" +
+                                "Recommendation: Gains ${lowerBoundWeight - user.weight!!} kg to reach normal level of BMI <br> <br>" +
+                                "I will help you achieve that by recommending proper food plan!")
+                        bmi > 18.5 && bmi <= 25 -> botSendMessage("Your Category is: $kategori <br> <br>" +
+                                "Recommendation: Keep up the good work! <br> <br>" +
+                                "I will help you maintaining your healthy weight by recommending proper food plan!")
+                        bmi > 25 -> botSendMessage("Your Category is: $kategori <br> <br>" +
+                                "Recommendation: Lose ${user.weight!! - higherBoundWeight} kg to reach normal level of BMI <br> <br>" +
+                                "I will help you achieve that by recommending proper food plan!")
+                    }
+                }
+
+            }
+
         }
 
         //listen to send button
@@ -139,7 +176,7 @@ class ChatActivity : AppCompatActivity() {
                 "rekomendasi" -> {
                     //TODO: Implement food recommendation
                     isRecom = true
-                    botSendMessage("nama makanan?")
+                    botSendMessage("Apa nama makanan yang sudah kamu makan?")
                     viewModel.resetLabel()
                 }
                 "" -> {
@@ -152,7 +189,7 @@ class ChatActivity : AppCompatActivity() {
         viewModel.deleteChatById(formId.toString())
 //        viewModel.getChatById(formId.toString()).isSubmitted = true
 //        viewModel.submitted(formId.toString())
-        botSendMessage("$foodName, $sarapan, $makanSiang, $makanMalam, $snack")
+//        botSendMessage("$foodName, $sarapan, $makanSiang, $makanMalam, $snack")
         val temp = mutableListOf<String>()
         if(sarapan)temp.add("1")
         if(makanSiang)temp.add("2")
@@ -167,9 +204,36 @@ class ChatActivity : AppCompatActivity() {
                     "Makan Malam" to it.data.dinner?.recommended,
                     "Snack" to it.data.snack?.recommended
                 )
+                val giziSarapan = it.data.breakfast?.giziNeeded
+                val giziLunch = it.data.lunch?.giziNeeded
+                val giziDinner = it.data.dinner?.giziNeeded
+                val giziSnack = it.data.snack?.giziNeeded
                 botSendMessage("Berikut adalah rekomendasi dari saya")
                 map.forEach { (key, value) ->
                     if (value != null) {
+                        when {
+                            key == "Sarapan" -> botSendMessage("Total Gizi yang diperlukan untuk $key: <br> <br>"
+                                    + "Total energi: ${giziSarapan?.energi} kkal <br>" +
+                            "Karbohidrat total: ${giziSarapan?.karbohidratTotal} gram <br>" +
+                            "Lemak total: ${giziSarapan?.lemakTotal} gram <br>" +
+                            "Protein: ${giziSarapan?.protein} gram")
+                        key == "Makan Siang" -> botSendMessage("Total Gizi yang diperlukan untuk $key: <br> <br>"
+                                    + "Total energi: ${giziLunch?.energi} kkal <br>" +
+                                    "Karbohidrat total: ${giziLunch?.karbohidratTotal} gram <br>" +
+                                    "Lemak total: ${giziLunch?.lemakTotal} gram <br>" +
+                                    "Protein: ${giziLunch?.protein} gram")
+                        key == "Makan Malam" -> botSendMessage("Total Gizi yang diperlukan untuk $key: <br> <br>"
+                                    + "Total energi: ${giziDinner?.energi} kkal <br>" +
+                                    "Karbohidrat total: ${giziDinner?.karbohidratTotal} gram <br>" +
+                                    "Lemak total: ${giziDinner?.lemakTotal} gram <br>" +
+                                    "Protein: ${giziDinner?.protein} gram")
+                        key == "Snack" -> botSendMessage("Total Gizi yang diperlukan untuk $key: <br> <br>"
+                                    + "Total energi: ${giziSnack?.energi} kkal <br>" +
+                                    "Karbohidrat total: ${giziSnack?.karbohidratTotal} gram <br>" +
+                                    "Lemak total: ${giziSnack?.lemakTotal} gram <br>" +
+                                    "Protein: ${giziSnack?.protein} gram")
+                        }
+
 //                        val rec = mutableListOf<String>()
 //                        value.forEach { recommendItem ->
 //                            rec.add("- ${recommendItem.namaMakanan}")
@@ -177,7 +241,7 @@ class ChatActivity : AppCompatActivity() {
 //                        botSendMessage("<b>${key}</b>:<br>${rec.joinToString("<br>")}")
                         val message = ChatModel(
                             0,
-                            key,
+                            "Rekomendasi Makanan untuk $key (geser ke kanan untuk melihat menu selanjutnya!)",
                             Date().time,
                             4,
                             false,
@@ -237,6 +301,7 @@ class ChatActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.app_bar_logout -> {
+                viewModel.deleteAllChats()
                 logout()
                 true
             }

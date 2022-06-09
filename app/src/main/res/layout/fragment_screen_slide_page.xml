@@ -1,15 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F2EBE9"
     tools:context=".ui.ScreenSlidePageFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+
+        <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/tv_makanan_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nama makanan: "
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.05" />
+
     <TextView
         android:id="@+id/tv_makanan"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Makanan 1" />
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|end"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_makanan_label"
+        app:layout_constraintVertical_bias="0.05"
+        tools:text="Nama Makanan" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/tv_energi_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total energi:"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_makanan"
+        app:layout_constraintVertical_bias="0.2" />
+
+    <TextView
+        android:id="@+id/tv_energi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toEndOf="@+id/tv_energi_label"
+        app:layout_constraintTop_toTopOf="@id/tv_energi_label"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="500 Kkal" />
+
+    <TextView
+        android:id="@+id/tv_karbohidrat_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Karbohidrat total:"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_energi_label"
+        app:layout_constraintVertical_bias="0.01" />
+
+    <TextView
+        android:id="@+id/tv_karbohidrat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toEndOf="@+id/tv_karbohidrat_label"
+        app:layout_constraintTop_toBottomOf="@id/tv_energi"
+        app:layout_constraintVertical_bias="0.01"
+        tools:text="250 gram" />
+
+    <TextView
+        android:id="@+id/tv_lemak_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lemak total:"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_karbohidrat_label"
+        app:layout_constraintVertical_bias="0.01" />
+
+    <TextView
+        android:id="@+id/tv_lemak"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toEndOf="@+id/tv_lemak_label"
+        app:layout_constraintTop_toBottomOf="@id/tv_karbohidrat"
+        app:layout_constraintVertical_bias="0.01"
+        tools:text="100 gram" />
+
+    <TextView
+        android:id="@+id/tv_protein_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Protein:"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_lemak_label"
+        app:layout_constraintVertical_bias="0.01" />
+
+    <TextView
+        android:id="@+id/tv_protein"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toEndOf="@+id/tv_protein_label"
+        app:layout_constraintTop_toBottomOf="@id/tv_lemak"
+        app:layout_constraintVertical_bias="0.01"
+        tools:text="125 gram" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
