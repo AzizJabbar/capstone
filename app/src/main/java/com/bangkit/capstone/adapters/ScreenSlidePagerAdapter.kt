@@ -24,6 +24,10 @@ class ScreenSlidePagerAdapter(fa: FragmentActivity, data: String?) : FragmentSta
         fragment.arguments = Bundle().apply {
             // Our object is just an integer :-P
             putString("nama_makanan", getObjectFromString(data)?.get(position)?.namaMakanan)
+            putDouble("energi", getObjectFromString(data)?.get(position)?.gizi!!.energi)
+            putDouble("karbohidrat_total", getObjectFromString(data)?.get(position)?.gizi!!.karbohidratTotal)
+            putDouble("lemak_total", getObjectFromString(data)?.get(position)?.gizi!!.lemakTotal)
+            putDouble("protein", getObjectFromString(data)?.get(position)?.gizi!!.protein)
 
 //            putInt("object", position + 1)
         }
