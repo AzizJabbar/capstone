@@ -65,6 +65,10 @@ class RegisterActivity : AppCompatActivity() {
             openWeightDialog()
         }
 
+        binding.loginLink.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
+        }
+
         setupAction()
 
     }

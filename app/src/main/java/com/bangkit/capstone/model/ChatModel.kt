@@ -21,5 +21,8 @@ data class ChatModel(
     val type: Int,
 
     @ColumnInfo(name = "isSubmitted")
-    var isSubmitted: Boolean
+    var isSubmitted: Boolean,
+
+    @ColumnInfo(name = "data")
+    var data: String?
 )

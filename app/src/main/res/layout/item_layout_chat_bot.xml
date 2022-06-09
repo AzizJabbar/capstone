@@ -55,7 +55,7 @@
                 android:orientation="vertical"
                 android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@id/text_view_message_item_layout_chat_bot"
-                tools:visibility="visible">
+                tools:visibility="gone">
 
                 <CheckBox
                     android:id="@+id/sarapan"
@@ -91,7 +91,29 @@
                 app:layout_constraintEnd_toEndOf="@+id/form"
                 app:layout_constraintStart_toStartOf="@+id/form"
                 app:layout_constraintTop_toBottomOf="@id/form"
-                tools:visibility="visible" />
+                tools:visibility="gone" />
+
+            <!-- activity_screen_slide.xml -->
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/pager"
+                app:layout_constraintTop_toBottomOf="@id/text_view_message_item_layout_chat_bot"
+                android:layout_width="match_parent"
+                android:visibility="gone"
+                android:layout_height="match_parent" />
+
+<!--            <com.rd.PageIndicatorView-->
+<!--                android:id="@+id/indicator"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_centerVertical="true"-->
+<!--                android:layout_marginLeft="16dp"-->
+<!--                app:piv_animationType="scale"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/pager"-->
+<!--                app:piv_dynamicCount="true"-->
+<!--                app:piv_selectedColor="@color/colorPrimary"-->
+<!--                app:piv_unselectedColor="@color/gray_700"-->
+<!--                attrs:piv_padding="12dp"-->
+<!--                attrs:piv_radius="8dp"/>-->
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

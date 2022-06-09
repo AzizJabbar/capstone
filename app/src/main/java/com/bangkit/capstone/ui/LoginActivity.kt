@@ -30,6 +30,9 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 //        binding.signInButton.setSize(SignInButton.SIZE_ICON_ONLY)
+        binding.registerLink.setOnClickListener {
+            startActivity(Intent(this, RegisterActivity::class.java))
+        }
         setupAction()
     }
 
@@ -65,6 +68,7 @@ class LoginActivity : AppCompatActivity() {
                                 .show()
                             mUserPreference = UserPreference(this)
                             mUserPreference.setUser(loginViewModel.response.value?.data!!)
+                            mUserPreference.setTime()
                             startActivity(Intent(this,ChatActivity::class.java))
                             finish()
                         }

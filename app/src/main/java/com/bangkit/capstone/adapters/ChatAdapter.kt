@@ -2,7 +2,6 @@ package com.bangkit.capstone.adapters
 
 import android.content.Context
 import android.text.Html
-import android.text.format.DateUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,9 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.bangkit.capstone.R
 import com.bangkit.capstone.model.ChatModel
 import com.bangkit.capstone.ui.ChatActivity
@@ -39,6 +40,8 @@ class ChatAdapter(context: Context) : RecyclerView.Adapter<ChatAdapter.ViewHolde
         val textViewMessage: TextView = itemView.findViewById(R.id.text_view_message_item_layout_chat_bot)
         val form: LinearLayout = itemView.findViewById(R.id.form)
         val submitBtn: Button = itemView.findViewById(R.id.submitBtn)
+        // Instantiate a ViewPager2 and a PagerAdapter.
+        val viewPager: ViewPager2 = itemView.findViewById(R.id.pager)
 
     }
 
@@ -111,6 +114,16 @@ class ChatAdapter(context: Context) : RecyclerView.Adapter<ChatAdapter.ViewHolde
                         (context as ChatActivity).submitTime(sarapan.isChecked, makanSiang.isChecked, makanMalam.isChecked, snack.isChecked)
 
                     }
+                }
+                4 -> {
+                    val viewHolderChatBot = holder as ViewHolderChatItemBot
+//                    viewHolderChatBot.textViewDateTime.text = DateUtils.getRelativeTimeSpanString(chat.timestamp)
+                    viewHolderChatBot.textViewMessage.text = Html.fromHtml(chat.text)
+
+                    viewHolderChatBot.viewPager.visibility = View.VISIBLE
+                    // The pager adapter, which provides the pages to the view pager widget.
+                    val pagerAdapter = ScreenSlidePagerAdapter(context as FragmentActivity, chat.data)
+                    viewHolderChatBot.viewPager.adapter = pagerAdapter
                 }
             }
         }

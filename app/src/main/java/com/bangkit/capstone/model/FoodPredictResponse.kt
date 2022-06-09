@@ -1,7 +1,10 @@
 package com.bangkit.capstone.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class FoodPredictResponse(
 
 	@field:SerializedName("data")
@@ -9,8 +12,9 @@ data class FoodPredictResponse(
 
 	@field:SerializedName("status")
 	val status: String
-)
+): Parcelable
 
+@Parcelize
 data class Snack(
 
 	@field:SerializedName("gizi_needed")
@@ -18,8 +22,9 @@ data class Snack(
 
 	@field:SerializedName("recommended")
 	val recommended: List<RecommendedItem>
-)
+): Parcelable
 
+@Parcelize
 data class Data1(
 
 	@field:SerializedName("breakfast")
@@ -33,8 +38,9 @@ data class Data1(
 
 	@field:SerializedName("snack")
 	val snack: Snack?
-)
+): Parcelable
 
+@Parcelize
 data class Lunch(
 
 	@field:SerializedName("gizi_needed")
@@ -42,8 +48,9 @@ data class Lunch(
 
 	@field:SerializedName("recommended")
 	val recommended: List<RecommendedItem>
-)
+): Parcelable
 
+@Parcelize
 data class Breakfast(
 
 	@field:SerializedName("gizi_needed")
@@ -51,8 +58,9 @@ data class Breakfast(
 
 	@field:SerializedName("recommended")
 	val recommended: List<RecommendedItem>
-)
+): Parcelable
 
+@Parcelize
 data class Gizi(
 
 	@field:SerializedName("protein")
@@ -66,8 +74,9 @@ data class Gizi(
 
 	@field:SerializedName("energi")
 	val energi: Double
-)
+): Parcelable
 
+@Parcelize
 data class Dinner(
 
 	@field:SerializedName("gizi_needed")
@@ -75,8 +84,9 @@ data class Dinner(
 
 	@field:SerializedName("recommended")
 	val recommended: List<RecommendedItem>
-)
+): Parcelable
 
+@Parcelize
 data class GiziNeeded(
 
 	@field:SerializedName("protein")
@@ -90,8 +100,9 @@ data class GiziNeeded(
 
 	@field:SerializedName("energi")
 	val energi: Double
-)
+): Parcelable
 
+@Parcelize
 data class RecommendedItem(
 
 	@field:SerializedName("gizi")
@@ -99,4 +110,4 @@ data class RecommendedItem(
 
 	@field:SerializedName("nama_makanan")
 	val namaMakanan: String
-)
+): Parcelable

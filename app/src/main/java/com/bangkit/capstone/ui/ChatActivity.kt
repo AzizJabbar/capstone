@@ -2,6 +2,7 @@ package com.bangkit.capstone.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.format.DateUtils
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -16,7 +17,10 @@ import com.bangkit.capstone.model.ChatModel
 import com.bangkit.capstone.model.UserPreference
 import com.bangkit.capstone.viewmodel.ChatViewModel
 import com.bangkit.capstone.viewmodel.ViewModelFactory.Companion.getInstance
+import com.google.gson.Gson
+import java.lang.Math.pow
 import java.util.*
+import kotlin.math.pow
 
 class ChatActivity : AppCompatActivity() {
     private lateinit var binding: ActivityChatBinding
@@ -52,10 +56,15 @@ class ChatActivity : AppCompatActivity() {
             startActivity(Intent(this, WelcomeActivity::class.java))
             finish()
         } else{
+            if((Date().time - mUserPreference.getTime() ) / 60000 >= 30){
+                logout()
+                finish()
+            }
             //get user
             val user = mUserPreference.getUser()
             //greet user with their name
             botSendMessage("Hi ${user.fullName?.split(" ")?.get(0)}, How can I help you?")
+            botSendMessage("BMI mu adalah: ${(user.weight?.div(user.height!!.toDouble().pow(2.0)) ?:"" )}")
         }
 
         //listen to send button
@@ -88,7 +97,8 @@ class ChatActivity : AppCompatActivity() {
                 input,
                 Date().time,
                 1,
-                false
+                false,
+                null
             ) //Create new Chat Entity
             viewModel.insert(message) // Insert to DB
 
@@ -110,7 +120,8 @@ class ChatActivity : AppCompatActivity() {
             "Pilih waktu rekomendasi:",
             Date().time,
             3,
-            false
+            false,
+            null
         )
         formId = viewModel.getNewestChat().id + 1
         viewModel.insert(message)
@@ -154,29 +165,43 @@ class ChatActivity : AppCompatActivity() {
                     "Sarapan" to it.data.breakfast?.recommended,
                     "Makan Siang" to it.data.lunch?.recommended ,
                     "Makan Malam" to it.data.dinner?.recommended,
-                    "Snack" to it.data.breakfast?.recommended
+                    "Snack" to it.data.snack?.recommended
                 )
                 botSendMessage("Berikut adalah rekomendasi dari saya")
                 map.forEach { (key, value) ->
                     if (value != null) {
-                        val rec = mutableListOf<String>()
-                        value.forEach { recommendItem ->
-                            rec.add("- ${recommendItem.namaMakanan}")
-                        }
-                        botSendMessage("<b>${key}</b>:<br>${rec.joinToString("<br>")}")
+//                        val rec = mutableListOf<String>()
+//                        value.forEach { recommendItem ->
+//                            rec.add("- ${recommendItem.namaMakanan}")
+//                        }
+//                        botSendMessage("<b>${key}</b>:<br>${rec.joinToString("<br>")}")
+                        val message = ChatModel(
+                            0,
+                            key,
+                            Date().time,
+                            4,
+                            false,
+                            Gson().toJson(value)
+                        )
+                        viewModel.insert(message)
 
                     }
                 }
 
 //                botSendMessage(it.toString())
                 viewModel.resetRecommendation()
-            } else {
-                botSendMessage("Maaf, nama makanan tersebut tidak ada di database kami")
+            }
+            viewModel.getFlag().observe(this){ flag ->
+                if (flag == "empty"){
+                    botSendMessage("Maaf, nama makanan tersebut tidak ada di database kami")
+                    viewModel.resetFlag()
+                }
             }
         }
         formId = 0
         foodName = ""
         isRecom = false
+        temp.clear()
     }
 
     private fun botSendMessage(s: String) {
@@ -185,7 +210,8 @@ class ChatActivity : AppCompatActivity() {
             s,
             Date().time,
             2,
-            false
+            false,
+            null
         )
         viewModel.insert(message)
 
