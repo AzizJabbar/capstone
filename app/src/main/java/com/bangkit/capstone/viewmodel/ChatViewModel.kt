@@ -64,7 +64,7 @@ class ChatViewModel(application: Application, private val pref: UserPreference):
                     _recommendation.value = response.body()
                 } else {
                     Log.e(ContentValues.TAG, "onFailure: ${response.message()}")
-                    _recommendation.value = null
+                    _flag.value = "empty"
                 }
             }
 
@@ -78,6 +78,9 @@ class ChatViewModel(application: Application, private val pref: UserPreference):
 
     fun getRecommendation() = recommendation
 
+    fun getFlag() = flag
+
     fun resetLabel() { _predictedLabel.value = "" }
     fun resetRecommendation() { _recommendation.value = null }
+    fun resetFlag() { _flag.value = "" }
 }

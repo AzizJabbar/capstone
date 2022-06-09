@@ -8,6 +8,7 @@ import android.security.keystore.KeyProperties
 import androidx.annotation.RequiresApi
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
+import java.util.*
 
 class UserPreference (context: Context) {
 
@@ -20,6 +21,7 @@ class UserPreference (context: Context) {
         private const val TB = "tinggi_badan"
         private const val BB = "berat_badan"
         private const val TOKEN = "token"
+        private const val LOGGED_IN = "logged_in"
 
         @Volatile
         private var INSTANCE: UserPreference? = null
@@ -79,6 +81,14 @@ class UserPreference (context: Context) {
         user.token = preferences.getString(TOKEN, "")
         return user
     }
+
+    fun setTime(){
+        val editor = preferences.edit()
+        editor.putLong(LOGGED_IN, Date().time)
+        editor.apply()
+    }
+
+    fun getTime() = preferences.getLong(LOGGED_IN, 0)
 
     fun logout(){
         val editor = preferences.edit()
