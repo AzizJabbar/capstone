@@ -2,6 +2,7 @@ package com.bangkit.capstone.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.text.Html
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -26,7 +27,7 @@ class ScreenSlidePageFragment : Fragment() {
 
 
             val textView: TextView = view.findViewById(R.id.tv_makanan)
-            textView.text = getString("nama_makanan").toString()
+            textView.text =Html.fromHtml("<b>${getString("nama_makanan").toString()}</b>")
 //            textView.text = getInt("object").toString()
 
             // bind AKG disini

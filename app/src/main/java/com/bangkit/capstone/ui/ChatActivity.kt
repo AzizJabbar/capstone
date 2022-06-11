@@ -126,7 +126,7 @@ class ChatActivity : AppCompatActivity() {
     }
 
     private fun processInput() {
-        val input = binding.textInput.text.toString() //Get message from input field
+        val input = binding.textInput.text.toString().trim() //Get message from input field
         if (input != ""){
 
             val message = ChatModel(
@@ -241,7 +241,7 @@ class ChatActivity : AppCompatActivity() {
 //                        botSendMessage("<b>${key}</b>:<br>${rec.joinToString("<br>")}")
                         val message = ChatModel(
                             0,
-                            "Rekomendasi Makanan untuk $key (geser ke kanan untuk melihat menu selanjutnya!) <br>",
+                            "Rekomendasi Makanan untuk $key (geser ke kanan untuk melihat menu selanjutnya!)<br>",
                             Date().time,
                             4,
                             false,

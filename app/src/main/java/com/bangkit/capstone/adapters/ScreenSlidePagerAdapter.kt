@@ -10,6 +10,8 @@ import com.google.gson.Gson
 
 import com.google.gson.reflect.TypeToken
 import java.lang.reflect.Type
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class ScreenSlidePagerAdapter(fa: FragmentActivity, data: String?) : FragmentStateAdapter(fa) {
@@ -23,7 +25,7 @@ class ScreenSlidePagerAdapter(fa: FragmentActivity, data: String?) : FragmentSta
         val fragment = ScreenSlidePageFragment()
         fragment.arguments = Bundle().apply {
             // Our object is just an integer :-P
-            putString("nama_makanan", getObjectFromString(data)?.get(position)?.namaMakanan)
+            putString("nama_makanan", getObjectFromString(data)?.get(position)?.namaMakanan?.capitalizeWords())
             putDouble("energi", getObjectFromString(data)?.get(position)?.gizi!!.energi)
             putDouble("karbohidrat_total", getObjectFromString(data)?.get(position)?.gizi!!.karbohidratTotal)
             putDouble("lemak_total", getObjectFromString(data)?.get(position)?.gizi!!.lemakTotal)
@@ -38,6 +40,8 @@ class ScreenSlidePagerAdapter(fa: FragmentActivity, data: String?) : FragmentSta
         return Gson().fromJson<List<RecommendedItem>>(jsonString, listType)
     }
 
+    fun String.capitalizeWords(): String =
+        split(" ").joinToString(" ") { it.lowercase().capitalize() }
 
 //    open class ViewHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView)
 
