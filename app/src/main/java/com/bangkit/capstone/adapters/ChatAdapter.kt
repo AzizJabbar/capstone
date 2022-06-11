@@ -9,12 +9,14 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.bangkit.capstone.R
 import com.bangkit.capstone.model.ChatModel
 import com.bangkit.capstone.ui.ChatActivity
+import me.relex.circleindicator.CircleIndicator3
 
 class ChatAdapter(context: Context) : RecyclerView.Adapter<ChatAdapter.ViewHolder>(){
     private var context = context
@@ -42,6 +44,8 @@ class ChatAdapter(context: Context) : RecyclerView.Adapter<ChatAdapter.ViewHolde
         val submitBtn: Button = itemView.findViewById(R.id.submitBtn)
         // Instantiate a ViewPager2 and a PagerAdapter.
         val viewPager: ViewPager2 = itemView.findViewById(R.id.pager)
+        val pagerContainer: ConstraintLayout = itemView.findViewById(R.id.pager_container)
+        val indicator: CircleIndicator3 = itemView.findViewById(R.id.indicator)
 
     }
 
@@ -120,10 +124,14 @@ class ChatAdapter(context: Context) : RecyclerView.Adapter<ChatAdapter.ViewHolde
 //                    viewHolderChatBot.textViewDateTime.text = DateUtils.getRelativeTimeSpanString(chat.timestamp)
                     viewHolderChatBot.textViewMessage.text = Html.fromHtml(chat.text)
 
-                    viewHolderChatBot.viewPager.visibility = View.VISIBLE
+                    viewHolderChatBot.pagerContainer.visibility = View.VISIBLE
                     // The pager adapter, which provides the pages to the view pager widget.
                     val pagerAdapter = ScreenSlidePagerAdapter(context as FragmentActivity, chat.data)
                     viewHolderChatBot.viewPager.adapter = pagerAdapter
+
+                    viewHolderChatBot.indicator.setViewPager(viewHolderChatBot.viewPager)
+
+
                 }
             }
         }

@@ -93,13 +93,41 @@
                 app:layout_constraintTop_toBottomOf="@id/form"
                 tools:visibility="gone" />
 
-            <!-- activity_screen_slide.xml -->
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/pager"
-                app:layout_constraintTop_toBottomOf="@id/text_view_message_item_layout_chat_bot"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/pager_container"
                 android:layout_width="match_parent"
+                android:maxWidth="250dp"
+                android:padding="10dp"
                 android:visibility="gone"
-                android:layout_height="match_parent" />
+                tools:visibility="visible"
+                app:layout_constraintTop_toBottomOf="@id/text_view_message_item_layout_chat_bot"
+                android:background="@drawable/primary_btn"
+                android:layout_height="wrap_content">
+
+                <!-- activity_screen_slide.xml -->
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/pager"
+                    android:layout_width="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_height="wrap_content" />
+
+                <me.relex.circleindicator.CircleIndicator3
+                    android:id="@+id/indicator"
+                    android:layout_height="10dp"
+                    android:layout_width="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="80dp"
+                    android:background="@color/cornflower_blue"
+                    app:ci_drawable="@drawable/white_radius"
+                    app:ci_drawable_unselected="@drawable/white_radius"
+                    app:layout_constraintTop_toBottomOf="@id/pager"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 <!--            <com.rd.PageIndicatorView-->
 <!--                android:id="@+id/indicator"-->
