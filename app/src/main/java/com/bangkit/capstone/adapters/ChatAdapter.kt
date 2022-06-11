@@ -99,6 +99,24 @@ class ChatAdapter(context: Context) : RecyclerView.Adapter<ChatAdapter.ViewHolde
                     val makanSiang = holder.itemView.findViewById<CheckBox>(R.id.makanSiang)
                     val makanMalam = holder.itemView.findViewById<CheckBox>(R.id.makanMalam)
                     val snack = holder.itemView.findViewById<CheckBox>(R.id.snack)
+
+                    // uncheck checked checkbox
+                    if (sarapan.isChecked){
+                        sarapan.toggle()
+                    }
+
+                    if (makanSiang.isChecked){
+                        makanSiang.toggle()
+                    }
+
+                    if (makanMalam.isChecked){
+                        makanMalam.toggle()
+                    }
+
+                    if (snack.isChecked){
+                        snack.toggle()
+                    }
+
 //                    if(chat. isSubmitted){
 //                        sarapan.isEnabled = false
 //                        makanSiang.isEnabled = false

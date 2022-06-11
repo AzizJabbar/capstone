@@ -126,7 +126,7 @@ class ChatActivity : AppCompatActivity() {
     }
 
     private fun processInput() {
-        val input = binding.textInput.text.toString() //Get message from input field
+        val input = binding.textInput.text.toString().trim() //Get message from input field
         if (input != ""){
 
             val message = ChatModel(
