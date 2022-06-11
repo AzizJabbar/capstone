@@ -255,11 +255,11 @@ class ChatActivity : AppCompatActivity() {
 //                botSendMessage(it.toString())
                 viewModel.resetRecommendation()
             }
-            viewModel.getFlag().observe(this){ flag ->
-                if (flag == "empty"){
-                    botSendMessage("Maaf, nama makanan tersebut tidak ada di database kami")
-                    viewModel.resetFlag()
-                }
+        }
+        viewModel.getFlag().observe(this){ flag ->
+            if (flag == "empty"){
+                botSendMessage("Maaf, nama makanan tersebut tidak ada di database kami")
+                viewModel.resetFlag()
             }
         }
         formId = 0
