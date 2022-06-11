@@ -241,7 +241,7 @@ class ChatActivity : AppCompatActivity() {
 //                        botSendMessage("<b>${key}</b>:<br>${rec.joinToString("<br>")}")
                         val message = ChatModel(
                             0,
-                            "Rekomendasi Makanan untuk $key (geser ke kanan untuk melihat menu selanjutnya!)",
+                            "Rekomendasi Makanan untuk $key (geser ke kanan untuk melihat menu selanjutnya!)<br>",
                             Date().time,
                             4,
                             false,
