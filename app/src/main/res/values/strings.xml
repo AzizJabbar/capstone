@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Capstone</string>
+    <string name="app_name">NutrieCare</string>
     <string name="login_link"><u>Saya sudah punya akun</u></string>
     <string name="register_link">Saya belum punya akun</string>
     <!-- TODO: Remove or change this placeholder text -->

@@ -25,7 +25,7 @@ interface ApiService {
 //        @Field("date_of_birth") date_of_birth: String,
 //    ): Call<AuthApiResponse>
 
-    @POST("users")
+    @POST("register")
     fun registerUser(
         @Body user: UserModel
     ): Call<AuthApiResponse>
